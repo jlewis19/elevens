@@ -34,12 +34,12 @@ public class Deck {
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		cards = new ArrayList<Card>();
 		int k = 0;
-		for (int i = 0; i < ranks.length; i++) {
-			for (int j = 0; j < suits.length; j++) {
+		for (int i = 0; i < suits.length; i++) {
+			for (int j = 0; j < ranks.length; j++) {
 				if (k == values.length)
 					k = 0;
-				System.out.println(ranks[i] + " " + suits[j] + " " + values[k]);
-				cards.add(new Card(ranks[i], suits[j], values[k]));
+				System.out.println(ranks[j] + " " + suits[i] + " " + values[k]);
+				cards.add(new Card(ranks[j], suits[i], values[k]));
 				k++;
 			}
 		}

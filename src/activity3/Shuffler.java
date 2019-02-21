@@ -1,3 +1,5 @@
+package activity3;
+
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -19,7 +21,7 @@ public class Shuffler {
 								 " consecutive perfect shuffles:");
 		int[] values1 = {0, 1, 2, 3};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
-			perfectShuffle(values1);
+			values1 = perfectShuffle(values1);
 			System.out.print("  " + j + ":");
 			for (int k = 0; k < values1.length; k++) {
 				System.out.print(" " + values1[k]);
@@ -49,8 +51,19 @@ public class Shuffler {
 	 * the cards in one half with the cards in the other.
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
-	public static void perfectShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+	public static int[] perfectShuffle(int[] values) {
+		int[] shuffled = new int[values.length];
+		int k = 0;
+		for (int j = 0; j < values.length / 2; j++) {
+			shuffled[k] = values[j];
+			k += 2;
+		}
+		k = 1;
+		for (int j = values.length / 2; j < values.length; j++) {
+			shuffled[k] = values[j];
+			k += 2;
+		}
+		return shuffled;
 	}
 
 	/**
@@ -65,6 +78,36 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void selectionShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		int r;
+		for (int k = values.length - 1; k > -1; k--) {
+			r = (int) ((k + 1) * Math.random());
+			int temp = values[k];
+			values[k] = values[r];
+			values[r] = temp;
+		}
+	}
+	
+	public static String flip() {
+		int rand = (int) (3 * Math.random() + 1);
+		
+		if (rand == 1) {
+			return "tails";
+		} else {
+			return "heads";
+		}
+	}
+	
+	public static boolean arePermutations(int[] array1, int[] array2) {
+		boolean exists;
+		for (int i = 0; i < array1.length; i++) {
+			exists = false;
+			for (int j = 0; j < array2.length; j++) {
+				if (array1[i] == array2[j])
+					exists = true;
+			}
+			if (!exists)
+				return false;
+		}
+		return true;
 	}
 }
